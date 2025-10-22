@@ -1,6 +1,39 @@
 #  Build a Bored Activity CLI App
+# Create a Python file called homework.py
+# Build a CLI menu that lets users choose different options
+# Use the Bored API to get activity suggestions
+# Handle user input and make appropriate API requests
+# Test your menu system thoroughly
+# Bored API: https://bored-api.appbrewery.com
+
 import re 
 
+# Function 1: Get a random Activity
+
+def get_random_activity():
+    """Get a completely random activity suggestion."""
+    try:
+        response = requests.get("https://bored-api.appbrewery.com/random")
+        response.raise_for_status()
+        data = response.json()
+
+        print("\nRandom Activity Suggestion:")
+        print(f"Activity: {data['activity']}")
+        print(f"Type: {data['type']}")
+        print(f"Participants: {data['participants']}")
+        print("Ready to try it?")
+
+        return data
+    except requests.exceptions.RequestException as e:
+        print("Error fetching activity:", e)
+        return None
+    
+# Function 2: Get Activity by type
+
+
+
+
+# CLI Menu System
 
 def show_menu():
     print("\nBored Activity Finder")
@@ -55,8 +88,7 @@ def main():
             print("Invalid choice! Please enter a number between 1–6.")
 
 
-# ------------------------------------------------------------
 # Program Entry Point
-# ------------------------------------------------------------
+
 if __name__ == "__main__":
     main()
