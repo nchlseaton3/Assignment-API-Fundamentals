@@ -102,6 +102,19 @@ def get_activity_by_participants():
     
 #  Function 4: Save Favorite activity 
 
+def save_favorite_activity(activity):
+    """Save an activity to a text file."""
+    if not activity:
+        print("No activity to save.")
+        return
+    try:
+        with open("favorites.txt", "a", encoding="utf-8") as file:
+            file.write(f"{activity['activity']} ({activity['type']})\n")
+        print("Activity saved to favorites.txt!")
+    except Exception as e:
+        print("Error saving activity:", e)
+
+#  Function 5: View Saved Activities
 
 # CLI Menu System
 
