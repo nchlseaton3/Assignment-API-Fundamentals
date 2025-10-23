@@ -69,6 +69,38 @@ def get_activity_by_type():
         print("Error fetching activity:", e)
         return None
 
+# Function 3: Get activity by participants
+
+def get_activity_by_participants():
+    """Get activity suggestions based on number of participants."""
+    num = input("\nEnter number of participants: ")
+
+    if not num.isdigit():
+        print("Please enter a valid number.")
+        return None
+
+    try:
+        response = requests.get(
+            "https://bored-api.appbrewery.com/filter",
+            params={"participants": num},
+        )
+        response.raise_for_status()
+        data = response.json()
+
+        if isinstance(data, list) and data:
+            suggestion = data[0]
+            print(f"\nActivity: {suggestion['activity']}")
+            print(f"Type: {suggestion['type']}")
+            print(f"Participants: {suggestion['participants']}")
+            return suggestion
+        else:
+            print("No activities found for that number of participants.")
+            return None
+    except requests.exceptions.RequestException as e:
+        print("Error fetching activity:", e)
+        return None
+    
+#  Function 4: Save Favorite activity 
 
 
 # CLI Menu System
