@@ -116,6 +116,20 @@ def save_favorite_activity(activity):
 
 #  Function 5: View Saved Activities
 
+def view_saved_activities():
+    """Read and display saved activities from file."""
+    try:
+        with open("favorites.txt", "r", encoding="utf-8") as file:
+            content = file.read().strip()
+            if not content:
+                print("No saved activities yet.")
+            else:
+                print("\nYour Saved Activities:")
+                print("----------------------")
+                print(content)
+    except FileNotFoundError:
+        print("You have no saved activities yet.")
+
 # CLI Menu System
 
 def show_menu():
